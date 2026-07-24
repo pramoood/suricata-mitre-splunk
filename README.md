@@ -1,7 +1,22 @@
-# suricata-mitre-splunk
-###**Suricata–Splunk–MITRE Honeypot Analysis Lab**
+# **Suricata–Splunk–MITRE Honeypot Analysis Lab**
+## Project Overview
 A full end‑to‑end threat‑intelligence pipeline built using T‑Pot Honeypot, Suricata IDS, Splunk Enterprise, and MITRE ATT&CK enrichment.
 This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC‑grade dashboard.
+
+
+
+## **Project Goals**
+- Deploy a cloud honeypot to capture real attacker traffic
+
+- Ingest Suricata IDS alerts into Splunk
+
+- Filter noise and false positives
+
+- Map alerts to MITRE ATT&CK tactics & techniques
+
+- Build a complete SOC dashboard for threat analysis
+
+- Demonstrate SIEM engineering, detection logic, and MITRE understanding
 
 
 
@@ -42,18 +57,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 
 
-## **Project Goals**
-- Deploy a cloud honeypot to capture real attacker traffic
 
-- Ingest Suricata IDS alerts into Splunk
-
-- Filter noise and false positives
-
-- Map alerts to MITRE ATT&CK tactics & techniques
-
-- Build a complete SOC dashboard for threat analysis
-
-- Demonstrate SIEM engineering, detection logic, and MITRE understanding
 
 
 
