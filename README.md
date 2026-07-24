@@ -29,7 +29,7 @@ Visualization Layer
 
 
 
-###**Project Goals**
+### **Project Goals**
 Deploy a cloud honeypot to capture real attacker traffic
 Ingest Suricata IDS alerts into Splunk
 Filter noise and false positives
@@ -39,7 +39,7 @@ Demonstrate SIEM engineering, detection logic, and MITRE understanding
 
 
 
-###**Pipeline Summary**
+### **Pipeline Summary**
 1. Provision Local SIEM Environment
 → Deploy a Windows 10 VM
 → Install Splunk Enterprise (Free Trial) to serve as the primary SIEM
