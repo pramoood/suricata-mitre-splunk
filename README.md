@@ -1,11 +1,11 @@
 # suricata-mitre-splunk
-**Suricata–Splunk–MITRE Honeypot Analysis Lab**
+###**Suricata–Splunk–MITRE Honeypot Analysis Lab**
 A full end‑to‑end threat‑intelligence pipeline built using T‑Pot Honeypot, Suricata IDS, Splunk Enterprise, and MITRE ATT&CK enrichment.
 This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC‑grade dashboard.
 
 
 
-**Architecture Overview**
+###**Architecture Overview**
 Windows 10 VM (local)  
 → Splunk Enterprise
 → Tailscale WireGuard VPN
@@ -29,7 +29,7 @@ Visualization Layer
 
 
 
-**Project Goals**
+###**Project Goals**
 Deploy a cloud honeypot to capture real attacker traffic
 Ingest Suricata IDS alerts into Splunk
 Filter noise and false positives
@@ -39,7 +39,7 @@ Demonstrate SIEM engineering, detection logic, and MITRE understanding
 
 
 
-**Pipeline Summary**
+###**Pipeline Summary**
 1. Provision Local SIEM Environment
 → Deploy a Windows 10 VM
 → Install Splunk Enterprise (Free Trial) to serve as the primary SIEM
