@@ -30,7 +30,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 
 ### AWS EC2 Ubuntu (t3.xlarge)  
-- T‑Pot Honeypot (Hive edition) + Suricata IDS
+- [T‑Pot Honeypot (Hive edition) + Suricata IDS](https://github.com/telekom-security/tpotce)
   
 - Splunk Universal Forwarder
   
@@ -78,7 +78,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
   
 
-### 4. Install & Configure T‑Pot Honeypot
+### 4. Install & Configure [T‑Pot Honeypot](https://github.com/telekom-security/tpotce)
 - Install T‑Pot (Hive edition) on the EC2 instance
   
 - Configure inbound firewall rules (SSH, WebUI, honeypot ports)
