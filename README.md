@@ -5,7 +5,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 
 
-###**Architecture Overview**
+### **Architecture Overview**
 Windows 10 VM (local)  
 → Splunk Enterprise
 → Tailscale WireGuard VPN
