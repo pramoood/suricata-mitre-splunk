@@ -79,7 +79,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 
 ### 4. Install & Configure [T‑Pot Honeypot](https://github.com/telekom-security/tpotce)
-- Install T‑Pot (Hive edition) on the EC2 instance
+- [Install T‑Pot (Hive edition)](https://github.com/telekom-security/tpotce) on the EC2 instance
   
 - Configure inbound firewall rules (SSH, WebUI, honeypot ports)
   
