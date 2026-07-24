@@ -3,7 +3,7 @@
 A full end‑to‑end threat‑intelligence pipeline built using T‑Pot Honeypot, Suricata IDS, Splunk Enterprise, and MITRE ATT&CK enrichment.
 This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC‑grade dashboard.
 
----
+
 
 ## **Project Goals**
 - Deploy a cloud honeypot to capture real attacker traffic
@@ -18,7 +18,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 - Demonstrate SIEM engineering, detection logic, and MITRE understanding
 
----
+
 
 ## **Architecture Overview**
 ### Windows 10 VM (local)  
@@ -50,7 +50,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - MITRE timelines, top tactics, top techniques, IP intelligence
   
----
+
 
 ## **Pipeline Summary**
 ### 1. Provision Local SIEM Environment
