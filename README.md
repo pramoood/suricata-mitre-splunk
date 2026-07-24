@@ -53,22 +53,29 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 <br>
 
 ## **Pipeline Summary**
-### 1. Provision Local SIEM Environment
+### 1. Provision Local Log Analysis Environment
 - Deploy a Windows 10 VM
   
 - Install Splunk Enterprise (Free Trial) to serve as the primary SIEM
-  
+
+<img width="2554" height="1226" alt="image" src="https://github.com/user-attachments/assets/35c8e70d-36b9-4332-b90b-2eae0420f092" />
+
 
 ### 2. Deploy Cloud Honeypot Infrastructure
 - Launch an Ubuntu AWS EC2 instance (t3.xlarge)
   
 - Assign an Elastic IP for stable access
-  
+
+<img width="1151" height="634" alt="image" src="https://github.com/user-attachments/assets/e3ca7014-b936-4ce5-8a0a-96f07b7fa849" />
+
 
 ### 3. Establish Secure Connectivity
 - Set up Tailscale WireGuard VPN
   
 - Connect the Win10 Splunk VM to the AWS EC2 honeypot
+
+<img width="2035" height="724" alt="image" src="https://github.com/user-attachments/assets/70e9d327-a7b5-4da1-aa58-26c4da6e67f8" />
+
   
 
 ### 4. Install & Configure T‑Pot Honeypot
@@ -79,6 +86,9 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Verify honeypot containers (Cowrie, Dionaea, Honeytrap, etc.)
   
 - Allow the honeypot to begin collecting attacker telemetry
+
+<img width="1555" height="1167" alt="image" src="https://github.com/user-attachments/assets/e2fc03b8-de9b-43c0-9c5a-c743379e779b" />
+
   
 
 ### 5. Install Splunk Universal Forwarder
@@ -89,7 +99,9 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Add monitor for T-Pot's built-in IDS (Suricata)
   
 - Create the tpot index in Splunk Enterprise
-  
+
+<img width="1928" height="548" alt="image" src="https://github.com/user-attachments/assets/3db45345-9b4f-4e3a-be06-0ccbefac1aca" />
+
 
 ### 6. Collect & Filter Attacker Telemetry
 - Let T‑Pot run to accumulate real attacker events
@@ -97,7 +109,10 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Use SPL to filter noise (Tailscale ports, IMDS traffic, misc categories)
   
 - Remove false positives and reputation‑only alerts
-  
+
+<img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
+
+
 
 ### 7. Perform MITRE ATT&CK Mapping
 - Analyze Suricata alert categories
@@ -107,6 +122,9 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Build alert_mapping.csv for tactic/technique mapping
   
 - Implement MITRE lookup tables (mitre_tactic.csv, mitre_technique.csv)
+
+<img width="704" height="607" alt="image" src="https://github.com/user-attachments/assets/e623a8ec-abaf-4372-8de8-c427580fc5b6" />
+
   
 
 ### 8. Build Lightweight SPL Analytics
@@ -122,3 +140,5 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Finalize dashboard layout and visual consistency
   
+  <img width="2555" height="1328" alt="image" src="https://github.com/user-attachments/assets/918dad9e-8ceb-4bb0-b220-42dccf5dacbd" />
+
