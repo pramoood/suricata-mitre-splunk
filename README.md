@@ -21,6 +21,8 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 <br>
 
 ## **Architecture Overview**
+<img width="2292" height="704" alt="image" src="https://github.com/user-attachments/assets/ba3e3c53-2b49-4bd7-98e1-10e6ad1e865a" />
+
 ### Windows 10 VM (local)  
 - Splunk Enterprise
   
@@ -58,7 +60,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Install Splunk Enterprise (Free Trial) to serve as the primary SIEM
 
-<img width="2554" height="1226" alt="image" src="https://github.com/user-attachments/assets/35c8e70d-36b9-4332-b90b-2eae0420f092" />
+  <img width="2554" height="1226" alt="image" src="https://github.com/user-attachments/assets/35c8e70d-36b9-4332-b90b-2eae0420f092" />
 
 
 ### 2. Deploy Cloud Honeypot Infrastructure
@@ -66,7 +68,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Assign an Elastic IP for stable access
 
-<img width="1151" height="634" alt="image" src="https://github.com/user-attachments/assets/e3ca7014-b936-4ce5-8a0a-96f07b7fa849" />
+  <img width="1151" height="634" alt="image" src="https://github.com/user-attachments/assets/e3ca7014-b936-4ce5-8a0a-96f07b7fa849" />
 
 
 ### 3. Establish Secure Connectivity
@@ -74,7 +76,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Connect the Win10 Splunk VM to the AWS EC2 honeypot
 
-<img width="2035" height="724" alt="image" src="https://github.com/user-attachments/assets/70e9d327-a7b5-4da1-aa58-26c4da6e67f8" />
+  <img width="2035" height="724" alt="image" src="https://github.com/user-attachments/assets/70e9d327-a7b5-4da1-aa58-26c4da6e67f8" />
 
   
 
@@ -87,7 +89,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Allow the honeypot to begin collecting attacker telemetry
 
-<img width="1555" height="1167" alt="image" src="https://github.com/user-attachments/assets/e2fc03b8-de9b-43c0-9c5a-c743379e779b" />
+  <img width="1555" height="1167" alt="image" src="https://github.com/user-attachments/assets/e2fc03b8-de9b-43c0-9c5a-c743379e779b" />
 
   
 
@@ -100,7 +102,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Create the tpot index in Splunk Enterprise
 
-<img width="1928" height="548" alt="image" src="https://github.com/user-attachments/assets/3db45345-9b4f-4e3a-be06-0ccbefac1aca" />
+  <img width="1928" height="548" alt="image" src="https://github.com/user-attachments/assets/3db45345-9b4f-4e3a-be06-0ccbefac1aca" />
 
 
 ### 6. Collect & Filter Attacker Telemetry
@@ -110,7 +112,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Remove false positives and reputation‑only alerts
 
-<img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
+  <img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
 
 
 
@@ -123,7 +125,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   
 - Implement MITRE lookup tables (mitre_tactic.csv, mitre_technique.csv)
 
-<img width="704" height="607" alt="image" src="https://github.com/user-attachments/assets/e623a8ec-abaf-4372-8de8-c427580fc5b6" />
+  <img width="704" height="607" alt="image" src="https://github.com/user-attachments/assets/e623a8ec-abaf-4372-8de8-c427580fc5b6" />
 
   
 
