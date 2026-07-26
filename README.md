@@ -1,7 +1,7 @@
 # **Suricata–Splunk–MITRE Honeypot Analysis Lab**
 ## Project Overview
 A full end‑to‑end threat‑intelligence pipeline built using [T‑Pot Honeypot](https://github.com/telekom-security/tpotce), Suricata IDS, Splunk Enterprise, and MITRE ATT&CK enrichment.
-This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC‑grade dashboard.
+This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC dashboard.
 
 ## **Project Goals**
 - Deploy a cloud honeypot to capture real attacker traffic
@@ -24,6 +24,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Splunk Universal Forwarder shipping logs to the SIEM
 - Elastic IP for a stable public-facing address
 - Security group scoped so admin ports (SSH, web UI) are IP-restricted while honeypot bait ports are open to the internet
+- SSH access restricted to trusted IPs and requires the EC2 private key for access
 
 
 ### Connectivity
@@ -62,7 +63,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 ### 4. Install & Configure [T‑Pot Honeypot](https://github.com/telekom-security/tpotce)
 - [Install T‑Pot (Hive edition)](https://github.com/telekom-security/tpotce) on the EC2 instance
-- Configure inbound firewall rules (SSH, WebUI, honeypot ports)
+- Configure inbound firewall rules (SSH, WebUI, Splunk UF ports)
 - Verify honeypot containers (Cowrie, Dionaea, Honeytrap, etc.)
 - Allow the honeypot to begin collecting attacker telemetry
 
@@ -85,7 +86,7 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 ### 7. SPL Analytics for Log Filtering and Visualization
 - Analyze Suricata alert categories
   - (Optional) analyze Suricata signatures for deeper accuracy
-- Use SPL to filter noise (Tailscale ports, IMDS traffic, misc categories)
+- Use SPL to filter noise (Tailscale ports, AWS IMDS traffic, misc categories)
 - Remove false positives and reputation‑only alerts
 - Create optimized SPL queries for chart creation
 
@@ -236,11 +237,11 @@ A few real incidents worth documenting, since diagnosing them was as instructive
 
 ## If I Did This Again / Possible Extensions
 
-- Start with at least 16 GB of RAM. T‑Pot’s 8 GB minimum works on paper, but real internet‑facing traffic needs more headroom.
-- Set up Tailscale from the beginning to avoid CGNAT issues that block direct connections.
-- Map MITRE techniques using the `alert.signature` field instead of `alert.category` for much more accurate MITRE mapping.
-- Add GeoIP and ASN enrichment for source IPs so Splunk can show attacker locations and network ownership.
-- Use an LLM API to automatically generate MITRE technique mappings and extra context for each alert.
+- Start with at least 16 GB of RAM. T‑Pot’s 8 GB minimum works on paper, but real internet‑facing traffic needs more headroom
+- Set up Tailscale from the beginning to avoid CGNAT issues that block direct connections
+- Map MITRE techniques using the `alert.signature` field instead of `alert.category` for much more accurate MITRE mapping
+- Add GeoIP and ASN enrichment for source IPs so Splunk can show attacker locations and network ownership
+- Use an LLM API to automatically generate MITRE technique mappings and extra context for each alert
 
 ## Repository Contents
 
