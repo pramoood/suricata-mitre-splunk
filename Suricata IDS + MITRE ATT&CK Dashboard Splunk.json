@@ -1,0 +1,294 @@
+{
+  "visualizations": {
+    "viz_tXhWUAUW": {
+      "type": "splunk.area",
+      "dataSources": {
+        "primary": "ds_FNnLbMWp"
+      },
+      "options": {
+        "dataValuesDisplay": "minmax",
+        "legendDisplay": "bottom",
+        "xAxisTitleVisibility": "hide",
+        "yAxisTitleText": "IDS Log Count",
+        "yAxisScale": "log",
+        "areaOpacity": 0.5
+      },
+      "title": "Attack Timeline - MITRE Tactics"
+    },
+    "viz_nUH59Ltw": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "annotation": "ds_ONvBOaNa",
+        "primary": "ds_ONvBOaNa"
+      },
+      "containerOptions": {},
+      "showProgressBar": true,
+      "showLastUpdated": false,
+      "title": "Top MITRE Tactics",
+      "options": {
+        "labelDisplay": "valuesAndPercentage",
+        "percentagePrecision": 1,
+        "showDonutHole": true
+      }
+    },
+    "viz_dXpK9uVa": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "annotation": "ds_sy2Dp09V",
+        "primary": "ds_11wOKYxS"
+      },
+      "containerOptions": {},
+      "showProgressBar": true,
+      "showLastUpdated": false,
+      "title": "Top MITRE Techniques",
+      "options": {
+        "labelDisplay": "valuesAndPercentage",
+        "percentagePrecision": 1
+      }
+    },
+    "viz_VZa3up74": {
+      "type": "splunk.area",
+      "dataSources": {
+        "primary": "ds_EvS59L2s"
+      },
+      "options": {
+        "dataValuesDisplay": "minmax",
+        "legendDisplay": "bottom",
+        "xAxisTitleVisibility": "hide",
+        "yAxisTitleText": "IDS Log Count",
+        "yAxisScale": "log",
+        "areaOpacity": 0.5
+      },
+      "title": "Attack Timeline - MITRE Techniques"
+    },
+    "viz_M669GiDg": {
+      "type": "splunk.table",
+      "options": {
+        "count": 20
+      },
+      "dataSources": {
+        "primary": "ds_fWBnebPy"
+      },
+      "containerOptions": {},
+      "showProgressBar": true,
+      "showLastUpdated": false
+    },
+    "viz_8Q9co9lz": {
+      "type": "splunk.column",
+      "dataSources": {
+        "primary": "ds_TMG3TDgj"
+      },
+      "containerOptions": {},
+      "showProgressBar": true,
+      "showLastUpdated": false,
+      "options": {
+        "dataValuesDisplay": "all",
+        "legendDisplay": "off",
+        "xAxisTitleText": "Source IPs",
+        "yAxisTitleText": "Total Number of Attacks"
+      },
+      "title": "Top 5 Source IPs (Attackers)"
+    }
+  },
+  "dataSources": {
+    "ds_FNnLbMWp": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name\n| timechart count by tactic_name"
+      },
+      "name": "MITRE Attack Timeline"
+    },
+    "ds_ONvBOaNa": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name| stats count by alert.category | sort -count"
+      },
+      "name": "Top MITRE Tactics"
+    },
+    "ds_sRaOlqbd": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name\n| stats count by tactic_name\n| sort -count"
+      },
+      "name": "Top MITRE Tactics copy 1"
+    },
+    "ds_dBxqavB1": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name\n| stats count by tactic_name\n| sort -count"
+      },
+      "name": "Top MITRE Tactics copy 2"
+    },
+    "ds_lFr8EBEY": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name\n| timechart count by tactic_name"
+      },
+      "name": "MITRE Attack Timeline copy 3"
+    },
+    "ds_sy2Dp09V": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT tactic\n| eval tactic=split(tactic,\"|\")\n| mvexpand tactic\n| lookup mitre_tactic.csv tactic_id as tactic OUTPUT tactic_name\n| stats count by tactic_name\n| sort -count"
+      },
+      "name": "Top MITRE Tactics copy 4"
+    },
+    "ds_11wOKYxS": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT technique\n| eval technique=split(technique,\"|\")\n| mvexpand technique\n| lookup mitre_technique.csv technique_id as technique OUTPUT technique_name\n| stats count by technique_name\n| sort -count"
+      },
+      "name": "Top MITRE Techniques"
+    },
+    "ds_EvS59L2s": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| lookup alert_mapping.csv alert.category as alert.category OUTPUT technique\n| eval technique=split(technique,\"|\")\n| mvexpand technique\n| lookup mitre_technique.csv technique_id as technique OUTPUT technique_name\n| timechart count by technique_name"
+      },
+      "name": "MITRE Attack Timeline copy 5"
+    },
+    "ds_fWBnebPy": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| stats count by alert.category | rename alert.category as \"Suricata IDS Alert Category\"| sort -count \n| rename -count as Events"
+      },
+      "name": "Search_1"
+    },
+    "ds_9RpvKopb": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| stats count by alert.category | rename alert.category as \"Suricata IDS Alert Category\"| sort -count \n| rename -count as Events"
+      },
+      "name": "Search_1 copy 6"
+    },
+    "ds_TMG3TDgj": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=tpot source=\"/home/ubuntu/tpotce/data/suricata/log/eve.json\"\nevent_type=alert src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254\n(alert.category!=\"Misc Attack\" AND alert.category!=\"Misc Activity\" AND alert.category!=\"Not Suspicious Traffic\" AND alert.category!=\"Generic Protocol Command Decode\")\n| stats count by src_ip | sort -count\n| head 5"
+      },
+      "name": "Search_2"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      },
+      "ds.spl2": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    }
+  },
+  "layout": {
+    "options": {},
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_M669GiDg",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 842,
+              "w": 761,
+              "h": 532
+            }
+          },
+          {
+            "item": "viz_8Q9co9lz",
+            "type": "block",
+            "position": {
+              "x": 761,
+              "y": 842,
+              "w": 679,
+              "h": 532
+            }
+          },
+          {
+            "item": "viz_VZa3up74",
+            "type": "block",
+            "position": {
+              "x": 511,
+              "y": 442,
+              "w": 929,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_dXpK9uVa",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 442,
+              "w": 511,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_nUH59Ltw",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 511,
+              "h": 442
+            }
+          },
+          {
+            "item": "viz_tXhWUAUW",
+            "type": "block",
+            "position": {
+              "x": 511,
+              "y": 0,
+              "w": 929,
+              "h": 442
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 960
+        }
+      }
+    }
+  },
+  "description": "",
+  "title": "Suricata IDS + MITRE ATT&CK Dashboard"
+}
