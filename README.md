@@ -124,18 +124,18 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 ## Filtering Out Noise: Why 100,000+ Events Became ~4,000
 
-Raw event volume is not the same as attacker signal. A large share of what the IDS logs is infrastructure chatter, not adversary behavior. Working through the data surfaced several sources of false positives that had to be explicitly ruled out before any MITRE mapping made sense:
+Raw event volume is not the same as attacker activity. A big portion of what an IDS logs is routine infrastructure traffic rather than real adversary behavior. As I worked through the dataset, several sources of noise and false positives showed up that needed to be filtered out before any MITRE mapping would be meaningful:
 
 | Source of noise | Cause | Fix |
 |---|---|---|
 | ~15,000+ "Network Trojan" alerts on port 41641 | Tailscale's default WireGuard peer-to-peer port, misclassified as malicious traffic | Exclude `src_port=41641` / `dest_port=41641` |
 | ~10,000 alerts to `169.254.169.254` | AWS's link-local Instance Metadata Service (IMDS) — not real internet traffic | Exclude `dest_ip=169.254.169.254` |
 | Alerts under "Misc Attack" | Entirely IP-reputation flags from a threat-intel feed (CINS Army list) — no actual exploit or malware behavior | Exclude `alert.category="Misc Attack"` |
-| Alerts under "Misc Activity," "Not Suspicious Traffic," "Generic Protocol Command Decode" | Categories too broad/ambiguous to reliably tie to a MITRE technique without per-signature analysis | Excluded for this pass; flagged as a future refinement |
+| Alerts under "Misc Activity," "Not Suspicious Traffic," "Generic Protocol Command Decode" | Categories too broad/ambiguous to reliably tie to a MITRE technique without per-signature analysis | *Excluded for this iteration. Flagged as a future refinement as next step of the project!* |
 
 
 
-**Result:** raw Suricata events (100,000+) → alert-type events only (~45,000) → after noise/false-positive filtering (~4,000, spanning 109 distinct attack signatures). This filtered set is what got mapped to MITRE ATT&CK.
+**Result:** The dataset went from roughly 100,000 raw Suricata events to about 45,000 alert‑type events, and then down to around 4,000 meaningful alerts after filtering out noise and false positives. Those 4,000 alerts, covering 15 attack categories (and 109 distinct attack signatures), which were mapped to the MITRE ATT&CK framework.
 
 
 
@@ -149,7 +149,7 @@ Alert categories were mapped to MITRE tactics and techniques, with an LLM helpin
 
 A single SPL query ties all three lookups together, expands multi‑value tactic and technique fields with `mvexpand`, and produces a clean `tactic_name` and `technique_name` pair for every event. This is what drives the heatmap and timeline panels in the dashboard.
 
-**Known limitation:** mapping was done at the `alert.category` level (broad buckets, ~15 values) rather than the `alert.signature` level (specific, ~109 values). Signature-level mapping would be materially more accurate but requires manually researching each signature's real-world technique — a good next iteration, not done here for scope reasons.
+**Known limitation:** the mapping was done at the `alert.category` level, which is fairly broad (around 15 values). Mapping at the `alert.signature` level would be much more accurate because signatures are far more specific (around 109 values), but doing that properly requires researching each signature’s real‑world behavior. *That’s a solid next step, It was just outside the scope of this iteration of the project!*
 
 
 ## SPL Queries
@@ -176,7 +176,7 @@ src_port!=41641 dest_port!=41641 alert.category="Misc attack"
 | chart count by alert.signature
 ```
  
-**Fully filtered baseline**, excluding Tailscale traffic, the AWS metadata endpoint, and low-signal alert categories, this is the dataset used for MITRE mapping:
+**Fully filtered baseline**, exluding Tailscale traffic, the AWS metadata endpoint, and low‑value categories. This is the dataset used for MITRE mapping:
 ```
 index=tpot source="/home/ubuntu/tpotce/data/suricata/log/eve.json" event_type=alert
 src_port!=41641 dest_port!=41641 dest_ip!=169.254.169.254
