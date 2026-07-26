@@ -43,8 +43,6 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Deploy a Windows 10 VM
 - Install Splunk Enterprise (Free Trial) to serve as the primary SIEM
 
-  <img width="2554" height="1226" alt="image" src="https://github.com/user-attachments/assets/35c8e70d-36b9-4332-b90b-2eae0420f092" />
-
 
 ### 2. Deploy Cloud Honeypot Infrastructure
 - Launch an Ubuntu AWS EC2 instance (`t3.xlarge`, initially `t3.large` — later upgraded, see Lessons Learned)
@@ -97,21 +95,25 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Build `alert_mapping.csv` for tactic/technique mapping
 - Implement MITRE lookup tables (`mitre_tactic.csv`, `mitre_technique.csv`)
 
-| Category                         | Tactic(s)                                   | Technique(s)                                           |
-|----------------------------------|----------------------------------------------|---------------------------------------------------------|
-| A Network Trojan was detected    | TA0011 (Command and Control)                 | T1071 (Application Layer Protocol), T1105 (Ingress Tool Transfer) |
-| Attempted Admin Priv Gain        | TA0006 (Credential Access)                   | T1110 (Brute Force)                                     |
-| Attempted DoS                    | TA0040 (Impact)                              | T1499 (Endpoint Denial of Service)                      |
-| Attempted Info Leak              | TA0043 (Reconnaissance)                      | T1592 (Gather Victim Host Information)                  |
-| Attempted User Priv Gain         | TA0006 (Credential Access)                   | T1110 (Brute Force)                                     |
-| Decode RPC Query                 | TA0043 (Reconnaissance)                      | T1046 (Network Service Scanning)                        |
-| Detection of DoS                 | TA0040 (Impact)                              | T1499 (Endpoint Denial of Service)                      |
-| Detection of Network Scan        | TA0043 (Reconnaissance)                      | T1046 (Network Service Scanning)                        |
-| Successful Admin Priv Gain       | TA0004 (Privilege Escalation), TA0006 (Credential Access) | T1078 (Valid Accounts)                     |
-| Web Application Attack           | TA0001 (Initial Access)                      | T1190 (Exploit Public-Facing Application)               |
+
+  *For this project, an LLM was used to generate the initial mapping, followed by manual review to make sure the assignments were reasonable. With a larger dataset, more attack categories will naturally appear, and the mapping can be expanded to cover them. There’s also room to take this further by mapping at the `alert.signature` level instead of the `alert.category` level. Signature‑level mapping is more precise and would produce richer MITRE attribution, but it requires researching each signature’s real‑world behavior, which is a solid next step for a future iteration.*
+
+    | Category                         | Tactic(s)                                   | Technique(s)                                           |
+    |----------------------------------|----------------------------------------------|---------------------------------------------------------|
+    | A Network Trojan was detected    | TA0011 (Command and Control)                 | T1071 (Application Layer Protocol), T1105 (Ingress Tool Transfer) |
+    | Attempted Admin Priv Gain        | TA0006 (Credential Access)                   | T1110 (Brute Force)                                     |
+    | Attempted DoS                    | TA0040 (Impact)                              | T1499 (Endpoint Denial of Service)                      |
+    | Attempted Info Leak              | TA0043 (Reconnaissance)                      | T1592 (Gather Victim Host Information)                  |
+    | Attempted User Priv Gain         | TA0006 (Credential Access)                   | T1110 (Brute Force)                                     |
+    | Decode RPC Query                 | TA0043 (Reconnaissance)                      | T1046 (Network Service Scanning)                        |
+    | Detection of DoS                 | TA0040 (Impact)                              | T1499 (Endpoint Denial of Service)                      |
+    | Detection of Network Scan        | TA0043 (Reconnaissance)                      | T1046 (Network Service Scanning)                        |
+    | Successful Admin Priv Gain       | TA0004 (Privilege Escalation), TA0006 (Credential Access) | T1078 (Valid Accounts)                     |
+    | Web Application Attack           | TA0001 (Initial Access)                      | T1190 (Exploit Public-Facing Application)               |
 
 
-  <img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
+
+    <img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
 
 
 
