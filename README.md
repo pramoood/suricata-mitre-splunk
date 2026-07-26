@@ -106,13 +106,9 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 
 
 ### 6. Collect & Filter Attacker Telemetry
-- Let T‑Pot run to accumulate real attacker events
-  
-- Use SPL to filter noise (Tailscale ports, IMDS traffic, misc categories)
-  
-- Remove false positives and reputation‑only alerts
+- Let T‑Pot run to accumulate real attacker events (I used a 24‑hour window)
 
-  <img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
+- Extend the runtime if you want a larger dataset
 
 
 
@@ -126,14 +122,18 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
 - Implement MITRE lookup tables (mitre_tactic.csv, mitre_technique.csv)
 
   <img width="704" height="607" alt="image" src="https://github.com/user-attachments/assets/e623a8ec-abaf-4372-8de8-c427580fc5b6" />
+  <img width="1415" height="1153" alt="image" src="https://github.com/user-attachments/assets/97ae1715-405e-498f-b2f5-55b9ff67e025" />
+
 
   
 
-### 8. Build Lightweight SPL Analytics
-- Create optimized SPL queries for tactics, techniques, IPs, and categories
+### 8. Build Lightweight SPL Analytics for Log Filtering and Visualization
+- Use SPL to filter noise (Tailscale ports, IMDS traffic, misc categories)
   
-- Ensure performance by minimizing heavy operations (mvexpand, joins)
+- Remove false positives and reputation‑only alerts
   
+- Create optimized SPL queries for chart creation
+    
 
 ### 9. Develop SOC‑Grade Splunk Dashboard
 - Build MITRE tactic/technique timelines
