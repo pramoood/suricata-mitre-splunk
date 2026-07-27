@@ -12,7 +12,7 @@ A cloud honeypot pipeline that captures attacker telemetry, forwards Suricata ID
 - Demonstrate SIEM engineering through log analysis
 
 ## **Architecture Overview**
-<img width="2292" height="704" alt="image" src="https://github.com/user-attachments/assets/ba3e3c53-2b49-4bd7-98e1-10e6ad1e865a" />
+<img width="2292" height="704" alt="image" src="https://github.com/user-attachments/assets/4efad471-d670-43ba-bcef-3528a1941eb6" />
 
 ### Windows 10 VM (local, Hyper-V)  
 - Splunk Enterprise (indexer + search head)
