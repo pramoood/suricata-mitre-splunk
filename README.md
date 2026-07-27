@@ -220,18 +220,18 @@ A few real incidents worth documenting, since diagnosing them was as instructive
 
     See below with `t3.xlarge` (16GB RAM) was running the T-Pot, which was using over 8GB.
 
-    <img width="794" height="85" alt="image" src="https://github.com/user-attachments/assets/acaa3084-51d9-4adb-937e-b9f91632e91d" />
+    <img width="873" height="91" alt="image" src="https://github.com/user-attachments/assets/5fb8ad9c-c74c-49b8-83ab-d749e638d541" />
 
 <br>
 
 3. **Tailscale silently broke DNS.** After installing Tailscale, `docker compose` on the EC2 instance began failing to pull images, and `curl` couldn't resolve any public hostname. Tailscale replaced the instance’s DNS resolver with one that couldn’t reach public domains, which caused external lookups to fail.
 
-      <img width="802" height="84" alt="image" src="https://github.com/user-attachments/assets/88e7dc38-d402-4985-a341-e55930b32af0" />
-          
+      <img width="1202" height="122" alt="image" src="https://github.com/user-attachments/assets/80153dbd-eb55-4311-8466-04c17003545b" />
+
 
    Fix: `sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'` to force Google's public DNS.
 
-      <img width="802" height="136" alt="image" src="https://github.com/user-attachments/assets/593e9928-69b5-499f-9e75-279e58ad2553" />
+      <img width="999" height="165" alt="image" src="https://github.com/user-attachments/assets/fec0d955-7bee-4db9-8098-31af00668d6c" />
 
 
 
