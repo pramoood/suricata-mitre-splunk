@@ -245,6 +245,6 @@ A few real incidents worth documenting, since diagnosing them was as instructive
 
 ## Repository Contents
 
-- [`alert_mapping.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/alert_mapping.csv), [`mitre_tactic.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_tactic.csv), [`mitre_technique.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_technique.csv) — Splunk lookup tables used for MITRE enrichment
-- [`mitre dashboard.json`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/dashboard/mitre%20dashboard.json) — exported Splunk Dashboard Studio configuration
-- `README.md`
+- [`alert_mapping.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/alert_mapping.csv), [`mitre_tactic.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_tactic.csv), [`mitre_technique.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_technique.csv) - Splunk lookup tables used for MITRE enrichment
+- [`mitre dashboard.json`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/dashboard/mitre%20dashboard.json) - exported Splunk Dashboard Studio configuration
+- `README.md` - You're reading it now :)
