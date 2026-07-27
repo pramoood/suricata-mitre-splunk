@@ -246,5 +246,5 @@ A few real incidents worth documenting, since diagnosing them was as instructive
 ## Repository Contents
 
 - `alert_mapping.csv`, `mitre_tactic.csv`, `mitre_technique.csv` — Splunk lookup tables used for MITRE enrichment
-- Dashboard export / screenshots
-- This README
+- `mitre dashboard.json` — exported Splunk Dashboard Studio configuration
+- `README.md`
