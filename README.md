@@ -157,7 +157,7 @@ A single SPL query ties all three lookups together, expands multi‑value tactic
 
 ## SPL Queries
  
-A few of the key queries used throughout the project, from initial exploration through to the final MITRE-mapped heatmap dataset.
+A are just a few of the key SQL queries used throughout the project, from initial log exploration all the way to the fully filtered dataset used for MITRE mapping.
  
 **Baseline alert breakdown**, before any filtering:
 ```
