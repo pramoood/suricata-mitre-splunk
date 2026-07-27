@@ -3,7 +3,7 @@
 A cloud honeypot pipeline that captures attacker telemetry, forwards Suricata IDS alerts into Splunk, enriches them with MITRE ATT&CK, and visualizes the results in a SOC dashboard.
 
 ## **Project Goals**
-- Capture real attacker traffic using [T‑Pot Honeypot]((https://github.com/telekom-security/tpotce))
+- Capture real attacker traffic using [T‑Pot Honeypot](https://github.com/telekom-security/tpotce)
 - Forward [Suricata IDS](https://suricata.io/) alerts to [Splunk Enterprise](https://www.splunk.com/en_us/products/splunk-enterprise.html)
 - Analyze raw IDS logs to identify meaningful attacker behavior
 - Filter noise and false positives using SPL queries
