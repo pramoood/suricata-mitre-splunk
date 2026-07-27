@@ -1,15 +1,15 @@
 # **Suricata–Splunk–MITRE Honeypot Analysis Lab**
 ## Project Overview
-A full end‑to‑end threat‑intelligence pipeline built using [T‑Pot Honeypot](https://github.com/telekom-security/tpotce), Suricata IDS, Splunk Enterprise, and MITRE ATT&CK enrichment.
-This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telemetry, forwards logs into Splunk Enterprise, filters noise, maps alerts to MITRE tactics & techniques, and visualizes everything in a SOC dashboard.
+A cloud honeypot pipeline that captures attacker telemetry, forwards Suricata IDS alerts into Splunk, enriches them with MITRE ATT&CK, and visualizes the results in a SOC dashboard.
 
 ## **Project Goals**
-- Deploy a cloud honeypot to capture real attacker traffic
-- Ingest Suricata IDS alerts into Splunk
-- Filter noise and false positives
-- Map alerts to MITRE ATT&CK tactics & techniques
-- Build a complete SOC dashboard for threat analysis
-- Demonstrate SIEM engineering, detection logic, and MITRE understanding
+- Capture real attacker traffic using [T‑Pot Honeypot]((https://github.com/telekom-security/tpotce))
+- Forward [Suricata IDS](https://suricata.io/) alerts to [Splunk Enterprise](https://www.splunk.com/en_us/products/splunk-enterprise.html)
+- Analyze raw IDS logs to identify meaningful attacker behavior
+- Filter noise and false positives using SPL queries
+- Map IDS alerts to [MITRE ATT&CK](https://attack.mitre.org/) tactics and techniques
+- Build a SOC dashboard for threat analysis
+- Demonstrate SIEM engineering through log analysis
 
 ## **Architecture Overview**
 <img width="2292" height="704" alt="image" src="https://github.com/user-attachments/assets/ba3e3c53-2b49-4bd7-98e1-10e6ad1e865a" />
@@ -78,12 +78,12 @@ This project deploys a cloud T-Pot honeypot on AWS, collects real attacker telem
   <img width="1928" height="548" alt="image" src="https://github.com/user-attachments/assets/3db45345-9b4f-4e3a-be06-0ccbefac1aca" />
 
 
-### 6. Collect & Filter Attacker Telemetry
+### 6. Collect Attacker Telemetry
 - Let T‑Pot run to accumulate real attacker events (I used a 24‑hour window)
 - Extend the runtime if you want a larger dataset
 
 
-### 7. SPL Analytics for Log Filtering and Visualization
+### 7. SPL Queries for Log Analyzing / Filtering
 - Analyze Suricata alert categories
   - (Optional) analyze Suricata signatures for deeper accuracy
 - Use SPL to filter noise (Tailscale ports, AWS IMDS traffic, misc categories)
@@ -146,9 +146,9 @@ Raw event volume is not the same as attacker activity. A big portion of what an 
 
 Alert categories were mapped to MITRE tactics and techniques, with an LLM helping generate the initial pass. The final implementation uses three chained Splunk lookup tables:
 
-- `alert_mapping.csv` — maps Suricata `alert.category` to MITRE tactic ID(s) and technique ID(s)
-- `mitre_tactic.csv` — maps tactic ID to tactic name
-- `mitre_technique.csv` — maps technique ID to technique name
+- [`alert_mapping.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/alert_mapping.csv) — maps Suricata `alert.category` to MITRE tactic ID(s) and technique ID(s)
+- [`mitre_tactic.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_tactic.csv) — maps tactic ID to tactic name
+- [`mitre_technique.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_technique.csv) — maps technique ID to technique name
 
 A single SPL query ties all three lookups together, expands multi‑value tactic and technique fields with `mvexpand`, and produces a clean `tactic_name` and `technique_name` pair for every event. This is what drives the heatmap and timeline panels in the dashboard.
 
@@ -245,6 +245,6 @@ A few real incidents worth documenting, since diagnosing them was as instructive
 
 ## Repository Contents
 
-- `alert_mapping.csv`, `mitre_tactic.csv`, `mitre_technique.csv` — Splunk lookup tables used for MITRE enrichment
-- `mitre dashboard.json` — exported Splunk Dashboard Studio configuration
+- [`alert_mapping.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/alert_mapping.csv), [`mitre_tactic.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_tactic.csv), [`mitre_technique.csv`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/lookups/mitre_technique.csv) — Splunk lookup tables used for MITRE enrichment
+- [`mitre dashboard.json`](https://github.com/pramoood/suricata-mitre-splunk/blob/main/splunk/dashboard/mitre%20dashboard.json) — exported Splunk Dashboard Studio configuration
 - `README.md`
